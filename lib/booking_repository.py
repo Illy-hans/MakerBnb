@@ -27,3 +27,9 @@ class BookingRepository():
             item = Booking(row['id'], row['user_id'], row['space_id'], row['date_booked'], row['space_name'])
             bookings.append(item)
         return bookings
+    
+    def find_booking(self, date_booked):
+        rows = self._connection.execute("SELECT * FROM bookings WHERE date_booked = %s", [date_booked])
+        if rows:
+            return True 
+        

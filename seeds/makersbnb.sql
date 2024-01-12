@@ -21,7 +21,7 @@ CREATE TABLE spaces (
 	address text,
 	name text,
     price int,
-    image_path BYTEA,
+    image_path text,
     description text,
     date_added date,
     date_available date,
@@ -49,20 +49,20 @@ INSERT INTO users (user_name, email, password) VALUES
 
 
 INSERT INTO spaces (address, name, price, image_path, description, date_added, date_available, user_id) VALUES
-('123 Horse Lane', 'Wild horses', 56, '/images/lilkim.jpg', 'A light, warm, and modern space for a gathering.', '2020-10-22', '2024-06-22', 1),
-('5 Zoo lane', 'Zootropolis', 124, '/images/zoos.jpg', 'A nice warm bed amongst the animals', '2019-08-21', '2024-04-10', 2),
-('789 Starlight Street', 'Celestial Haven', 72, '/images/celestial_haven.jpg', 'Experience the tranquility under the stars in this celestial haven.', '2022-02-08', '2024-02-01', 3),
-('101 Mountain View', 'Mountain Hideaway', 110, '/images/mountain_hideaway.jpg', 'Escape to the serene mountains and enjoy the breathtaking views.', '2023-01-17', '2024-05-15', 2),
-('222 Beachfront Road', 'Ocean Paradise Villa', 150, '/images/ocean_paradise.jpg', 'Relax by the beach in this luxurious oceanfront villa.', '2022-11-30', '2024-10-12', 1),
-('333 Skyline Tower', 'Cityscape Loft', 95, '/images/cityscape_loft.jpg', 'A modern loft with stunning views of the city skyline.', '2020-12-03', '2024-08-20', 3),
-('444 Lakeside Drive', 'Tranquil Lake Cottage', 80, '/images/lake_cottage.jpg', 'Escape to this cozy cottage by the lake for a peaceful retreat.', '2021-09-25', '2024-09-18', 2);
+('123 Horse Lane', 'Opulent Oak Haven', 300, '/images/oakhaven.png', 'A lavish wooden house in the serene countryside, adorned with expensive decor, offering a retreat of unparalleled luxury.', '2020-10-22', '2024-06-22', 1),
+('5 Zoo lane', 'Stonegate Sanctuary', 560, '/images/stonegate.png', 'A rural British stone and woodwork cabin nestled in a picturesque valley, blending traditional charm with modern elegance.', '2019-08-21', '2024-04-10', 2),
+('789 Starlight Street', 'Glass Vista Retreat', 720, '/images/glassvista.png', 'A modern marvel of glass and wood, featuring a private swimming pool and stone steps, providing a luxurious escape into nature.', '2022-02-08', '2024-02-01', 3),
+('101 Mountain View', 'Remote Hillside Lodge', 110, '/images/hillsidelodge.png', 'A secluded wooden lodge perched on a remote hillside, offering exclusive tranquility and breathtaking views.', '2023-01-17', '2024-05-15', 2),
+('222 Beachfront Road', 'Alpine Oasis', 150, '/images/alpineoasis.png', 'A peaceful wooden cabin surrounded by towering pine trees in a snowy locale, providing a cozy and luxurious winter retreat.', '2022-11-30', '2024-10-12', 1),
+('333 Skyline Tower', 'Stone Serenity', 340, '/images/stoneserenity.png', 'A contemporary stonework guest house with a refreshing swimming pool, offering a perfect blend of sophistication and relaxation.', '2020-12-03', '2024-08-20', 3),
+('444 Lakeside Drive', 'Garden View Haven', 80, '/images/gardenviewhaven.png', 'A simple yet luxuriously appointed stonework cabin with a sprawling garden, providing an idyllic escape from the hustle and bustle.', '2021-09-25', '2024-09-18', 2);
 
 INSERT INTO bookings (date_booked, user_id, space_id, space_name) VALUES
-('2024-02-01', 1, 3, 'Celestial Haven'),
-('2024-04-10', 1, 2, 'Zootropolis'),
-('2024-05-15', 2, 4, 'Mountain Hideaway' ),
-('2024-06-22', 2, 1, 'Wild horses'),
-('2024-08-20', 2, 6, 'Cityscape Loft'),
-('2024-09-18', 3, 7, 'Tranquil Lake Cottage'),
-('2024-10-12', 3, 5, 'Ocean Paradise Villa');
+('2024-02-01', 1, 3, 'Glass Vista Retreat'),
+('2024-04-10', 1, 2, 'Stonegate Sanctuary'),
+('2024-05-15', 2, 4, 'Remote Hillside Lodge' ),
+('2024-06-22', 2, 1, 'Opulent Oak Haven'),
+('2024-08-20', 2, 6, 'Stone Serenity'),
+('2024-09-18', 3, 7, 'Garden View Haven'),
+('2024-10-12', 3, 5, 'Alpine Oasis');
 

@@ -3,11 +3,21 @@
     <head>
         <title>MakersBnB</title>
         <link rel="stylesheet" href="/static/style.css" >
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
     <body>
-        <header><h1>MakersBnB</h1></header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{{ url_for('get_index') }}" style="color: #DDE6ED;">
+                <img src="/static/images/logo.jpeg" width="45" height="50" alt="logo-img">
+                MakersBnB
+            </a>
+        </nav>
+
+        <br>
+        <br>
         <div class = "forms_container">
             <h2>Sign In</h2>
+            <br>
             <form method="POST" action="">
                 <fieldset>
                     {% with messages = get_flashed_messages() %}
@@ -31,7 +41,7 @@
                         {{ form.submit(class ="button")}}
                     </p>
                 <!-- Link to navigate back similar to other pages -->
-                <a class="forward-button" href="{{ url_for('get_create_account') }}">Don't have an account please click here to sign up</a>
+                <a class="forward-button" href="{{ url_for('get_create_account') }}">Don't have an account? Click here to sign up!</a>
                 </fieldset>
             </form>
         </div>

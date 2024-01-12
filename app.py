@@ -42,14 +42,14 @@ def load_user(user_id):
 def get_index():
     connection = get_flask_database_connection(app)
     repo = SpaceRepository(connection)
-    listings = repo.all()
+    listings = repo.all()    
     page, per_page, offset= get_page_args()
     total = len(listings)
     pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
     paginated_products = listings[offset: offset + per_page]
     current_page = int(request.args.get('page', 1))
     
-    return render_template('index.html', listings=paginated_products, pagination=pagination, paginated_products=paginated_products, current_page=current_page, user = current_user)
+    return render_template('index.html', listings=paginated_products, pagination=pagination, paginated_products=paginated_products, current_page=current_page, user=current_user)
 
 
 
@@ -136,15 +136,19 @@ def get_space_done(id):
 
     if request.method == 'POST':
         date = request.form['date']
-        date_booked = datetime.strptime(date, '%Y-%m-%d')
-        if current_user:
-            booking = Booking(None, current_user.id, space.id, date_booked, space.name)
-            repo.create(booking)
-            return redirect(url_for('profile_page'))
+        
+        if current_user.is_authenticated:
+            if not repo.find_booking(date):
+                date_booked = datetime.strptime(date, '%Y-%m-%d')
+                booking = Booking(None, current_user.id, space.id, date_booked, space.name)
+                repo.create(booking)
+                return redirect(url_for('profile_page'))
+            else:
+                flash("This date is unavailable, please choose another")
         else:
-            flash("You need to be logged in to make a booking")
+            flash("Please log in to make a booking")
 
-    return render_template("space.html", space=space)
+    return render_template("space.html", space=space, user=current_user)
 
 
 

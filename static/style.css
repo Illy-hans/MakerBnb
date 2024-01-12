@@ -5,7 +5,6 @@ body {
     height: 100vh;
     margin: 0px;
     background-color: #f8f9fa; 
-    /* background-color: #96bce3;  */
 }
 
 header {
@@ -16,6 +15,7 @@ header {
     align-items: center;
     color: #DDE6ED;
     padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
@@ -35,28 +35,47 @@ header a {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+
 }
 
 .description-container div:nth-of-type(1) {
     flex-grow: 2;
     flex-basis: 0; 
     display: flex;
+    min-height: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
 }
 
 .description-container div:nth-of-type(1) p,
 .description-container div:nth-of-type(1) h1 {
     max-width: 100%;
     flex-wrap: wrap;
+    flex: 1;
     align-self: flex-start;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: Helvetica, sans-serif;
+}
+
+.description-container div:nth-of-type(1) p{
+    font-size: 16px;
+}
+
+.description-container div:nth-of-type(1) h1{
+    margin-top: 16px;
 }
 
 .description-container div:nth-of-type(2) {
     flex-grow: 1;
     display: flex;
     max-width: 300px;
+    align-self: center;
 }
 
 header a:nth-of-type(1) {
@@ -75,9 +94,30 @@ header a:nth-of-type(1) {
 .image-container img {
     width: 300px;
     height: 200px;
-    border: 2px solid black;
     display: block;
+    border-radius: 10px 10px 0px 0px;
+    border-bottom: 2px solid #27374D;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.listing-details {
+    background-color: white;    
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    padding: 10px;
+}
+
+.card-space-price {
+    margin-left: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.card-space-price,
+.card-space-name {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .image-container-space {
@@ -143,6 +183,8 @@ footer {
     color: #DDE6ED;
     padding: 10px;
     text-align: center;
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 .price,
@@ -201,6 +243,7 @@ footer {
 
 .navbar {
     background-color: #27374D;
+    box-shadow: 0 2px 5px rgb(0,0,0, 0.5);
 }
 
 /* NEW LISTING CSS */
@@ -233,7 +276,7 @@ footer {
     padding: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 30%; 
+    width: 40%; 
     border: black 1px solid;
     border-radius: 1%;
 }

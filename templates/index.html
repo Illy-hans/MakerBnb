@@ -6,29 +6,49 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
     <body>
-        <header>
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="" style="color: #DDE6ED;">
+                <img src="/static/images/logo.jpeg" width="45" height="50" alt="logo-img">
+                MakersBnB
+            </a>
             {% if current_user.is_authenticated %}
-                <a class="nav-link" href="{{ url_for('profile_page') }}">Hi, {{ user.user_name }}</a>
-                <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('profile_page') }}">Hi, {{ user.user_name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
             {% else %}
-                <a class="nav-link" href="{{ url_for('get_login_details') }}">Sign In</a>
-                <a class="nav-link" href="{{ url_for('get_create_account') }}">Create Account</a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('get_login_details') }}">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('get_create_account') }}">Create Account</a>
+                        </li>
+                    </ul>
+                </div>
             {% endif %}
-        </header>
+        </nav>
+        
+        <br>
+        <br>
         <div class ="description-container">
                 <div><h1>Welcome to MakersBnB</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl urna, venenatis id  pharetra, Curabitur velit dolor, aliquet et ipsum et, euismod gravida elit. Pellentesque posuere varius dignissim. Donec in orci ac metus euismod efficitur sed at arcu. Suspendisse vestibulum ut arcu at vehicula. Aenean in tincidunt purus. Mauris ultrices augue id purus vehicula, eu elementum enim blandit. Maecenas sagittis vulputate nulla, nec molestie risus egestas nec. Donec elementum eu massa quis aliquet. Donec pharetra sed erat vitae fringilla.</p></div>
-                <div><img src="static/images/200.jpeg" height="250ox" width="300px"></a></div>
-             
+                <p>Step into the world of extraordinary hospitality as you join our exclusive platform, where discerning homeowners showcase their luxury properties for the ultimate vacation experience. Welcome to a distinguished community where opulent residences find their perfect guests, creating memorable escapes for the most discerning travelers. Whether you own a chic urban penthouse, a secluded mountain retreat, or a lavish beachfront villa, our platform is your gateway to sharing your exquisite space with those who appreciate the finer things in life.</p></div>
+                <div><img src="static/images/makersbnblogo.png" height="300px" width="300px"></a></div>
+            
         </div>
         <div class="image-container">
             {% for listing in listings %}
             <div class='listing-container'><a href="/space/{{listing.id}}"><img src="static/{{listing.image_path}}"></a>
-            <div class="listing-details">{{listing.name}} - £{{listing.price}}/night</div></div>
-            {% endfor %}      
-        </div>
-        <div class="pagination">
-            {{ pagination.links }}
+            <div class="listing-details"><p class="card-space-name">{{listing.name}}</p><p class="card-space-price"><strong>£{{listing.price}}</strong> per night</p></div></div>
+            {% endfor %}
         </div>
         <footer>©MakerBnB</footer>
     </body>
