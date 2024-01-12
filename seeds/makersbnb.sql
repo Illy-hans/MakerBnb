@@ -45,8 +45,8 @@ INSERT INTO users (user_name, email, password) VALUES
 ('gustavo', 'gustavo@gustavo.com', 'Gustavo123456!'),
 ('Lil kim', 'femalerappers@femalerappers.com', '14d7d63e53c91431cb5b4a2e62dbb80881736ae7f228d5b4894935a108b1bfab'),
 ('Curious George', 'fakemonkey@fakemonkey.com', 'Curiousgeorge2£'),
-('Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*');
-
+('Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*'),
+('test', 'test123@testemail.com', '$2b$12$AHtXhF5zgqsR2FwD3YHjd.Li5qWsjQGNhHZq5cRxLSuqINSmq7LBy');
 
 INSERT INTO spaces (address, name, price, image_path, description, date_added, date_available, user_id) VALUES
 ('123 Horse Lane', 'Opulent Oak Haven', 300, '/images/oakhaven.png', 'A lavish wooden house in the serene countryside, adorned with expensive decor, offering a retreat of unparalleled luxury.', '2020-10-22', '2024-06-22', 1),

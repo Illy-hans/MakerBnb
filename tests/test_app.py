@@ -20,8 +20,8 @@ When we GET the login page, it renders the template
 """
 def test_get_login(page, test_web_address):
     page.goto(f"http://{test_web_address}/login")
-    h1_tag = page.locator("h1")
-    expect(h1_tag).to_have_text("MakersBnB")
+    h2_tag = page.locator("h2")
+    expect(h2_tag).to_have_text("Sign In")
 
 """
 When we call index.html, it renders the template
@@ -39,7 +39,6 @@ def test_get_index_listings(page, test_web_address, db_connection):
     db_connection.seed('seeds/makersbnb.sql')
     page.goto(f"http://{test_web_address}")
     list_items = page.locator(".image-container")
-    print(list_items)
     expect(list_items).to_have_text(['\n\n\n'            
                                     'Opulent Oak Haven£300 per night\n\n\n'            
                                     'Stonegate Sanctuary£560 per night\n\n\n'
@@ -52,14 +51,36 @@ def test_get_index_listings(page, test_web_address, db_connection):
 """
 When we click on sign in page, it redirects us to the correct page
 """
+def test_get_sign_in_page_from_landing_page(page, test_web_address):
+    page.goto(f"http://{test_web_address}")
+    page.click(".navbar-nav :nth-child(1) .nav-link")
+    assert page.url == f"http://{test_web_address}/login"
+
 
 """
 When click on create account, it shows us the create account page
 """
+def test_get_creat_account_page_from_landing_page(page, test_web_address):
+    page.goto(f"http://{test_web_address}")
+    page.click(".navbar-nav :nth-child(2) .nav-link")
+    assert page.url == f"http://{test_web_address}/create_account"
+
 
 """
 When user is signed in, it displays you are logged in
 """
+def test_nav_bar_displays_user_logged_in_on_index(page, test_web_address, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f"http://{test_web_address}/login")
+    page.fill("#username_input input", "test")
+    page.fill("#password_input input", "123abcD!")
+    page.click(".button")
+    page.click(".navbar-nav :nth-child(2) .nav-link")
+    user_tag = page.locator(".navbar-nav :nth-child(1) .nav-link")
+    sign_out_tag = page.locator(".navbar-nav :nth-child(2) .nav-link")
+    assert page.url == f"http://{test_web_address}/"
+    expect(user_tag).to_have_text("Hi, test")
+    expect(sign_out_tag).to_have_text("Sign Out")
 
 """
 When the user has signed out, it shows the the sign in and create account buttons
