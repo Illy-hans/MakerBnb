@@ -8,27 +8,37 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous">
     </head>
-    
     <body>
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ url_for('get_index') }}" style="color: #DDE6ED;">
                 <img src="/static/images/logo.jpeg" width="45" height="50" alt="logo-img">
                 MakersBnB
             </a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('profile_page')}}">Hi, {{ user.user_name }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_index') }}">Main Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
-                    </li>
-                </ul>
-            </div>
+            {% if current_user.is_authenticated %}
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('profile_page') }}">Hi, {{ user.user_name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('get_login_details') }}">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('get_create_account') }}">Create Account</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
         </nav>
+        
 
 <div class="image-container-space"> <img src="{{ url_for('static', filename=space.image_path) }}" alt="Space Image"> </div>
 
