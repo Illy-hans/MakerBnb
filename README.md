@@ -84,11 +84,13 @@ I would like to make a request to book a space for one night from the space page
 |   Description    |   Image    |
 |:------------:|:----------------:|
 |Landing Page| ![](static/images/landing-page.png)|
+|Scroll down on landing page to see all available spaces| ![](static/images/landing-page2.png)|
 |User can create account| ![](static/images/create-account.png)|
-|User can view profile page| ![](static/images/plain-profile.png)|
-|User can create new Stay| ![](static/images/create-listing.png)|
-|User can view Stay and create a new Booking| ![](static/images/booking.png)|
-|User can view their created Stays and Bookings| ![](static/images/profile-bookings-stay.png)|
+|User can view inital profile page| ![](static/images/initial-profile.png)|
+|User can create new Stay| ![](static/images/create-space.png)|
+|User can view profile page with created Stay| ![](static/images/profile-listing.png)|
+|User can view Stay and create a new Booking| ![](static/images/space-page.png)|
+|User can view their Bookings on their profile| ![](static/images/profile-bookings.png)|
 
 
 
