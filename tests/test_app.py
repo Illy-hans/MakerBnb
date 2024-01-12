@@ -85,3 +85,60 @@ def test_nav_bar_displays_user_logged_in_on_index(page, test_web_address, db_con
 """
 When the user has signed out, it shows the the sign in and create account buttons
 """
+def test_nav_bar_displays_user_logged_out_on_index(page, test_web_address, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f"http://{test_web_address}/login")
+    page.fill("#username_input input", "test")
+    page.fill("#password_input input", "123abcD!")
+    page.click(".button")
+    page.click(".navbar-nav :nth-child(2) .nav-link")
+    assert page.url == f"http://{test_web_address}/"
+    page.click(".navbar-nav :nth-child(2) .nav-link")
+    assert page.url == f"http://{test_web_address}/"
+    user_tag = page.locator(".navbar-nav :nth-child(1) .nav-link")
+    sign_out_tag = page.locator(".navbar-nav :nth-child(2) .nav-link")
+    expect(user_tag).to_have_text("Sign In")
+    expect(sign_out_tag).to_have_text("Create Account")
+
+"""
+When you click on a listing of the index page, it should redirect you to said listing
+"""
+def test_listing_redirection_on_index(page, test_web_address, db_connection):
+    db_connection.seed('seeds/makersbnb.sql')
+    page.goto(f"http://{test_web_address}/")
+    # page.click(".image-container :nth-child(1) :nth-child(1)") <-- alternative syntax to below
+    page.click(".image-container .listing-container a[href='/space/1']")
+    assert page.url == f"http://{test_web_address}/space/1"
+
+
+
+def test_page_has_loaded_images(page, test_web_address, db_connection):
+        db_connection.seed('seeds/makersbnb.sql')
+        page.goto(f"http://{test_web_address}/")
+        page.screenshot(path="images.png")
+        
+        # image_selector = "a[href='/space/1']" <-- alternative syntax to below
+        image_selector1 = "img[src='static//images/oakhaven.png']" 
+        image_selector2 = "img[src='static//images/stonegate.png']"
+        image_selector3 = "img[src='static//images/glassvista.png']"
+        image_selector4 = "img[src='static//images/hillsidelodge.png']"
+        image_selector5 = "img[src='static//images/alpineoasis.png']"
+        image_selector6 = "img[src='static//images/stoneserenity.png']"
+        image_selector7 = "img[src='static//images/gardenviewhaven.png']"
+
+        page.wait_for_selector(image_selector1)
+        page.wait_for_selector(image_selector2)
+        page.wait_for_selector(image_selector3)
+        page.wait_for_selector(image_selector4)
+        page.wait_for_selector(image_selector5)
+        page.wait_for_selector(image_selector6)
+        page.wait_for_selector(image_selector7)
+
+        
+        assert page.is_visible(image_selector1) 
+        assert page.is_visible(image_selector2) 
+        assert page.is_visible(image_selector3)
+        assert page.is_visible(image_selector4) 
+        assert page.is_visible(image_selector5)
+        assert page.is_visible(image_selector6)
+        assert page.is_visible(image_selector7)
