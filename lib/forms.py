@@ -21,7 +21,7 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
     submit = SubmitField('Login')
 
-class NewListing(FlaskForm):
+class NewListingForm(FlaskForm):
     name = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Name"})
     address = StringField(validators=[InputRequired()], render_kw={"placeholder": "Address"})
     price = IntegerField('Price', validators=[validators.NumberRange(min=0, max=10000)], widget=NumberInput())
@@ -31,4 +31,9 @@ class NewListing(FlaskForm):
     ])
     description = StringField(validators=[InputRequired()], render_kw={"placeholder": "Description"})
     date_added = DateField('Date Added', format='%Y-%m-%d', validators=[DataRequired()], widget=DateInput())
+    submit = SubmitField('Submit')
+
+
+class BookingForm(FlaskForm):
+    booking_date = DateField('Date Added', format='%Y-%m-%d', validators=[DataRequired()], widget=DateInput())
     submit = SubmitField('Submit')

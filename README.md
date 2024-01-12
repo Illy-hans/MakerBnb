@@ -1,10 +1,42 @@
-# MakersBnB Python Project Seed
+# MakersBnB 
 
-This repo contains the seed codebase for the MakersBnB project in Python (using 
-Flask and Pytest).
+Welcome to our web application! Here, users can effortlessly list their available spaces and book accommodations for the night, akin to popular platforms like Airbnb. As part of the Makers Bootcamp, this project reflects our ongoing journey in web development. Your exploration and contributions are more than welcome in shaping this collaborative effort!
 
-Someone in your team should fork this seed repo to their Github account. 
-Everyone in the team should then clone this fork to their local machine to work on it.
+## Tech Stack
+For this app we will be using the following tech stack:
+- Python
+- Flask
+- PostgreSQL
+- Pytest
+- HTML/CSS
+
+## User Stories:
+
+**Anyone can see listings.**
+~~~~
+As a User
+I can go on the main page and see all available spaces
+I can go to the login or create new account page.
+~~~~
+**Users can login and go to their profile page**
+~~~~
+As a User
+So I can see my spaces and bookings
+I would like to be able to login and go to my profile page.
+~~~~
+**Users should be able to create new spaces**
+~~~~
+As a User
+So I can display my spaces
+I would like to name, describe, price, add an address and a picture of a new space.
+~~~~
+**Any signed-up user can request to book any space for one night.**
+~~~~
+As a User
+So I can stay somewhere for a day
+I would like to make a request to book a space for one night from the space page
+~~~~
+
 
 ## Setup
 
@@ -20,8 +52,8 @@ Everyone in the team should then clone this fork to their local machine to work 
 # If you have problems with the above, contact your coach
 
 # Create a test and development database
-; createdb YOUR_PROJECT_NAME
-; createdb YOUR_PROJECT_NAME_TEST
+; createdb makersbnb
+; createdb test_makersbnb
 
 # Open lib/database_connection.py and change the database names
 ; open lib/database_connection.py
@@ -32,8 +64,34 @@ Everyone in the team should then clone this fork to their local machine to work 
 # Run the app
 ; python app.py
 
-# Now visit http://localhost:5000/index in your browser
+# Now visit http://localhost:5000/ in your browser
 ```
 
-# TEST
-just testing 
+## Tests
+
+```
+# Run the tests
+; pipenv run pytest 
+```
+
+## Planning
+| ![](static/images/plan-design.png)|
+
+
+
+## Application
+
+|   Description    |   Image    |
+|:------------:|:----------------:|
+|Landing Page| ![](static/images/landing-page.png)|
+|User can create account| ![](static/images/create-account.png)|
+|User can view profile page| ![](static/images/plain-profile.png)|
+|User can create new Stay| ![](static/images/create-listing.png)|
+|User can view Stay and create a new Booking| ![](static/images/booking.png)|
+|User can view their created Stays and Bookings| ![](static/images/profile-bookings-stay.png)|
+
+
+
+
+
+

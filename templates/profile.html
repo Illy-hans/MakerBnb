@@ -12,7 +12,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#" style="color: #DDE6ED;">
+        <a class="navbar-brand" href="{{ url_for('get_index') }}" style="color: #DDE6ED;">
             <img src="/static/images/logo.jpeg" width="45" height="50" alt="logo-img">
             MakersBnB
         </a>
@@ -43,16 +43,11 @@
                 <li>
                     <article>
                         <h5>
-                            {{ space.name }} <br> Address: {{ space.address }} <br>Price: {{ space.price }}£ <br>
+                            {{ space.name }} <br> Address: {{ space.address }} <br>Price: {{ space.price }}£ <br>  {{ space.id }}<br>
                         </h5>
-                    
-                    
-                            <img src="{{ url_for('static', filename=space.image_path) }}" alt="Space Image">
-
-               
-                        <h5>
-                            <br>Availability: {{ space.date_available }}
-                        </h5>
+                            <a href="/space/{{ space.id }}">
+                                <img src="{{ url_for('static', filename=space.image_path) }}" alt="Space Image">   
+                            </a>
                     </article>
                 </li>
                 {% endfor %}
@@ -62,22 +57,26 @@
 
     <div class="container mt-5">
         <h3>My Bookings</h3>
-        <div class="bookings-profile-div">
+        <div class="listings-profile-div">
             <ul>
                 {% for booking in bookings %}
+                {% for listing in listing %}
+                {% if listing.id == booking.space_id %}        
                 <li>
                     <article>
                         <h5>
-                            <a href="/space/{{ booking.space_id }}" style="color:#27374D;">
-                            {{ booking.date_booked }} - {{booking.space_name}} 
+                            <a href="/space/{{ booking.space_id }}" style="color:#27374D; text-decoration: none;">
+                                Booking Date: {{ booking.date_booked }} -  Space Name {{booking.space_name}} {{ booking.space_id }}  <img src="{{ url_for('static', filename=listing.image_path) }}" alt="Space Image">     
+                            </a>
                         </h5>
                     </article>
                 </li>
+                {% endif %}
+                {% endfor %}
                 {% endfor %}
             </ul>
         </div>
     </div>
-
     <footer>©MakerBnB</footer>
 </body>
 </html>
