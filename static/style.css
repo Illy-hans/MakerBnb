@@ -372,6 +372,10 @@ fieldset{
     margin-top: 100px;
 }
 
+.listings-profile-div:last-of-type {
+    margin-bottom: 100px;
+}
+
   /* Pagination */
 .pagination {
     display: flex;
