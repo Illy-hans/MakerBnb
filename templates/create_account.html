@@ -14,21 +14,19 @@
         </nav>
         <br>
         <br>
-        <div class = "forms_container">
+        <div class="forms_container">
             <h2>Create Account</h2><br>
             <form method="POST" action="">
                 <fieldset>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    {% endwith %}
                     {{ form.csrf_token }}
                     {{ form.hidden_tag() }}
+                    
+                    {% for field, errors in form.errors.items() %}
+                        {% for error in errors %}
+                            <p class="error">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+
                     <p>
                         {{ form.username }}<br>
                     </p>
@@ -42,12 +40,20 @@
                         {{ form.submit(class="button")}}
                     </p>
                     <!-- Link to navigate back to sign_in page-->
-                    <div class = "forward-button">
-                        <a href="/login" class = "account_link">Already have an account? Sign in here!</a>
+                    <div class="forward-button">
+                        <a href="/login" class="account_link">Already have an account? Sign in here!</a>
                     </div>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
                 </fieldset>
             </form>
-        
         </div>
         <footer>©MakerBnB</footer>
     </body>

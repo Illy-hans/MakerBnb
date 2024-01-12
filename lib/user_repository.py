@@ -15,12 +15,22 @@ class UserRepository:
             users.append(user)
         return users
     
+      
     def create(self, user):
-          rows = self._connection.execute('INSERT INTO users (user_name, email, password) VALUES (%s, %s, %s) RETURNING id', [
+        # Check if the username and email already exist
+        user_already_exist = self.find_by_name(user.user_name)
+        email_already_exist = self.find_by_email(user.email)     
+        if user_already_exist is None and email_already_exist is None:
+            # Insert the new user into the database and return success along with the user information
+            users = self._connection.execute('INSERT INTO users (user_name, email, password) VALUES (%s, %s, %s) RETURNING id', [
               user.user_name, user.email, user.password])
-          row = rows[0]
-          user.id = row['id']
-          return None
+            
+            user = users[0]
+            return True, user
+        else:
+            # Return failure if the username or email already exists
+            return False, None
+  
 
     
     def find(self, email, password_attempt):
@@ -58,7 +68,13 @@ class UserRepository:
     
     
     def find_by_email(self, email):
-        rows = self._connection.execute('SELECT * FROM users WHERE email = %s', [email])
-        row = rows[0]
-        return User(row["id"], row["user_name"], row["email"], row["password"])
+        rows = self._connection.execute('SELECT email FROM users WHERE email = %s', [email])
+        
+        # Check if rows are not empty and return the email if found, otherwise return None
+        if rows:
+            row = rows[0]
+            return row['email'] if row else None
+        else:
+            return None
+    
     

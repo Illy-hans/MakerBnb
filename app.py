@@ -99,12 +99,20 @@ def get_create_account():
         username = form.username.data
         email = form.email.data
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        
         user = User(None, username, email, hashed_password)
-        repo.create(user)
-        login_user(user)
-        flash('Account created successfully!', 'success')
-        return redirect(url_for('profile_page'))
-    
+        success, user = repo.create(user)
+        if success:
+            flash("Registration successful")
+            return redirect(url_for('profile_page'))
+        elif not success and repo.find_by_name(form.username.data) is not None and not success and repo.find_by_email(form.email.data) is not None:
+            flash("Username and email already exist. Please choose a different username and email.")
+        elif not success and repo.find_by_name(form.username.data) is not None:
+            flash("Username already exists. Please choose a different username.")
+        elif not success and repo.find_by_email(form.email.data) is not None:
+            flash("Email already exists. Please choose a different email.")
+
+
     return render_template('create_account.html', form=form)
 
 
