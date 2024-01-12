@@ -10,9 +10,8 @@ from lib.user import User
 from flask_bcrypt import Bcrypt
 from flask_paginate import Pagination, get_page_args
 from lib.booking_repository import BookingRepository
-from datetime import datetime, date
+from datetime import date
 from lib.booking import Booking
-import hashlib
 
 # Create a new Flask app
 app = Flask(__name__, static_url_path='/static')

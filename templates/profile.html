@@ -48,9 +48,6 @@
                             <a href="/space/{{ space.id }}">
                                 <img src="{{ url_for('static', filename=space.image_path) }}" alt="Space Image">   
                             </a>
-                        <h5>
-                            <br>Availability: {{ space.date_available }}
-                        </h5>
                     </article>
                 </li>
                 {% endfor %}
