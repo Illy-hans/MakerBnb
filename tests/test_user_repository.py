@@ -15,13 +15,13 @@ def test_get_all_users(db_connection):
                     User(1, 'gustavo', 'gustavo@gustavo.com', 'Gustavo123456!'),
                     User(2, 'Lil kim', 'femalerappers@femalerappers.com', '14d7d63e53c91431cb5b4a2e62dbb80881736ae7f228d5b4894935a108b1bfab'),
                     User(3, 'Curious George', 'fakemonkey@fakemonkey.com', 'Curiousgeorge2£'),
-                    User(4, 'Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*')
+                    User(4, 'Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*'),
+                    User(5, 'test', 'test123@testemail.com', '$2b$12$AHtXhF5zgqsR2FwD3YHjd.Li5qWsjQGNhHZq5cRxLSuqINSmq7LBy')
     ]
 
 """
 When we call UserRepository.create()
 A new user record is added to the database
-"""
 """
 def test_create_user(db_connection):
     db_connection.seed("seeds/makersbnb.sql")
@@ -30,12 +30,14 @@ def test_create_user(db_connection):
     repository.create(User(None, 'Alan', 'test_email@test.com', '1Bcdefgh@'))
 
     assert repository.all() == [
-                    User(1, 'Lil kim', 'femalerappers@femalerappers.com', 'apassword1@A'),
-                    User(2, 'Curious George', 'fakemonkey@fakemonkey.com', 'Curiousgeorge2£'),
-                    User(3, 'Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*'),
-                    User(4, 'Alan', 'test_email@test.com', '1Bcdefgh@')
+                    User(1, 'gustavo', 'gustavo@gustavo.com', 'Gustavo123456!'),
+                    User(2, 'Lil kim', 'femalerappers@femalerappers.com', '14d7d63e53c91431cb5b4a2e62dbb80881736ae7f228d5b4894935a108b1bfab'),
+                    User(3, 'Curious George', 'fakemonkey@fakemonkey.com', 'Curiousgeorge2£'),
+                    User(4, 'Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*'),
+                    User(5, 'test', 'test123@testemail.com', '$2b$12$AHtXhF5zgqsR2FwD3YHjd.Li5qWsjQGNhHZq5cRxLSuqINSmq7LBy'),
+                    User(6, 'Alan', 'test_email@test.com', '1Bcdefgh@')
     ]
-"""
+
 """
 When we call UserRepository.find() with email and password
 it returns true if in database, false if not
@@ -64,7 +66,8 @@ def test_hashed_passwords(db_connection):
                     User(2, 'Lil kim', 'femalerappers@femalerappers.com', '14d7d63e53c91431cb5b4a2e62dbb80881736ae7f228d5b4894935a108b1bfab'),
                     User(3, 'Curious George', 'fakemonkey@fakemonkey.com', 'Curiousgeorge2£'),
                     User(4, 'Barbie', 'dreamteam@barbiemail.com', 'ImjustKen123%*'),
-                    User(5, 'Alan', 'test_email@test.com', '1Bcdefgh@')
+                    User(5, 'test', 'test123@testemail.com', '$2b$12$AHtXhF5zgqsR2FwD3YHjd.Li5qWsjQGNhHZq5cRxLSuqINSmq7LBy'),
+                    User(6, 'Alan', 'test_email@test.com', '1Bcdefgh@')
     ]
 
 """
